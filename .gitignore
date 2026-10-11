@@ -1,0 +1,25 @@
+# ===== 数据集 =====
+# 语料体积大且可随时重新下载，不入库
+data/
+*.jsonl
+
+# ===== 训练产物 =====
+checkpoints/
+runs/
+*.pt
+*.pth
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# ===== 缓存 =====
+.cache/
+
+# ===== 系统 =====
+.DS_Store
+Thumbs.db
