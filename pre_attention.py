@@ -68,13 +68,13 @@ class CrossAttention(nn.Module):
 
 
 # 易于理解的版本  针对多头使用for循环来足以处理  实际运行效率极慢
-class MutiHeadAttention(nn.Module):
+class MultiHeadAttention(nn.Module):
     def __init__(self,embed_size,num_heads):
-        super(MutiHeadAttention,self).__init__()
+        super(MultiHeadAttention,self).__init__()
         assert embed_size%num_heads==0
         self.embed_size=embed_size
         self.num_heads=num_heads
-        self.head_dim=embed_size/num_heads
+        self.head_dim=embed_size//num_heads
 
         
         self.w_q=nn.ModuleList([nn.Linear(embed_size,self.head_dim) for _ in range(num_heads)])
@@ -87,7 +87,7 @@ class MutiHeadAttention(nn.Module):
         batch_size=q.shape[0]
         multi_head_outputs=[]
 
-        for i in range(self.head_dim):
+        for i in range(self.num_heads):
             Q=self.w_q[i](q)
             K=self.w_k[i](k)
             V=self.w_v[i](v)
